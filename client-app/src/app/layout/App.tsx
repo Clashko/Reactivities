@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./styles.css";
 import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import { observer } from "mobx-react-lite";
