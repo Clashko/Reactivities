@@ -19,7 +19,7 @@ export default observer(function LoginForm() {
                              .required('Password is required.')
                              .min(4, 'Password is too short - should be 4 char minimum.')
                              .max(8, 'Password is too long - should be 8 char maximum.')
-                             .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/, 'Password must contain symbols, numbers, lowercase and uppercase.')
+                             .matches(/(?=.*\d)(?=.*\w)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/, 'Password must contain symbols, numbers, lowercase and uppercase.')
             })}
         >
             {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (

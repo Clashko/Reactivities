@@ -50,7 +50,7 @@ namespace API.Controllers
                 ModelState.AddModelError("username", "Username taken");
 
             if(!ModelState.IsValid)
-                return ValidationProblem(ModelState);
+                return ValidationProblem();
 
             var user = new AppUser
             {
