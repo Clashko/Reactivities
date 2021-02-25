@@ -37,12 +37,12 @@ export default observer(function ActivityForm() {
   });
 
   const validationSchema = Yup.object({
-    title: Yup.string().required(),
-    description: Yup.string().required(),
-    category: Yup.string().required(),
-    date: Yup.string().required().nullable(),
-    venue: Yup.string().required(),
-    city: Yup.string().required(),
+    title: Yup.string().required('Title is required.'),
+    description: Yup.string().required('Description is required.'),
+    category: Yup.string().required('Category is required.'),
+    date: Yup.string().required('Date is required.').nullable(),
+    venue: Yup.string().required('Venue is required.'),
+    city: Yup.string().required('City is required.'),
   })
 
   useEffect(() => {
