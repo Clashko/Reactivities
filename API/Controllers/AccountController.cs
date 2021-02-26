@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Services;
@@ -48,8 +49,10 @@ namespace API.Controllers
                 ModelState.AddModelError("email", "Email taken");
             if (await _userManager.Users.AnyAsync(x => x.UserName == registerDto.UserName))
                 ModelState.AddModelError("username", "Username taken");
+            if(!Regex.IsMatch(registerDto.Password, "(?=.*\\d)(?=.*\\W)(?=.*[a-z])(?=.*[A-Z]).{4,8}$"))
+                ModelState.AddModelError("password", "Password must contain symbols, numbers, lowercase and uppercase.");
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return ValidationProblem();
 
             var user = new AppUser
@@ -66,7 +69,8 @@ namespace API.Controllers
                 return CreateUserObject(user);
             }
 
-            return BadRequest("Problem registering user");
+            ModelState.AddModelError("Register", "Problem registering user");
+            return ValidationProblem();
         }
 
         [Authorize]
